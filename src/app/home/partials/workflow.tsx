@@ -1,230 +1,15 @@
-// 'use client';
-
-// import React, { useState, useRef, useEffect, useCallback } from 'react';
-// import Image from 'next/image';
-// import { cn } from '@/lib/utils';
-// import { Button } from '@/components/ui/button';
-
-// interface TechItem {
-//   iconSrc: string;
-//   title: string;
-//   description: string;
-//   isFeatured?: boolean;
-// }
-
-// const techStackData: TechItem[] = [
-//   {
-//     iconSrc: '/icons/html.svg',
-//     title: 'HTML',
-//     description: 'Crafting semantic, accessible HTML structures.',
-//     isFeatured: true,
-//   },
-//   {
-//     iconSrc: '/icons/css.svg',
-//     title: 'CSS',
-//     description: 'Crafting semantic, accessible CSS structures.',
-//     isFeatured: false,
-//   },
-//   {
-//     iconSrc: '/icons/js.svg',
-//     title: 'Javascript',
-//     description: 'Crafting semantic, accessible JavaScript structures.',
-//     isFeatured: true,
-//   },
-//   {
-//     iconSrc: '/icons/react.svg',
-//     title: 'React',
-//     description: 'Crafting semantic, accessible React components.',
-//     isFeatured: false,
-//   },
-//   {
-//     iconSrc: '/icons/docker.svg',
-//     title: 'Docker',
-//     description: 'Streamlining deployment with containerization.',
-//     isFeatured: true,
-//   },
-//   {
-//     iconSrc: '/icons/ejs.svg',
-//     title: 'EJS',
-//     description: 'Building dynamic server-side templates efficiently.',
-//     isFeatured: false,
-//   },
-//   {
-//     iconSrc: '/icons/ts.svg',
-//     title: 'TypeScript',
-//     description: 'Enhancing JavaScript with static type definitions.',
-//     isFeatured: true,
-//   },
-//   {
-//     iconSrc: '/icons/mongodb.svg',
-//     title: 'MongoDB',
-//     description: 'Flexible NoSQL database for modern applications.',
-//     isFeatured: false,
-//   },
-// ];
-
-// const TechCard = React.forwardRef<
-//   HTMLDivElement,
-//   TechItem & { className?: string }
-// >(({ iconSrc, title, description, isFeatured = false, className }, ref) => {
-//   return (
-//     <div
-//       ref={ref}
-//       className={cn(
-//         'flex w-[215px] flex-shrink-0 flex-col items-center gap-3 rounded-[100px] px-4 py-10 transition-all duration-300 ease-in-out',
-//         isFeatured
-//           ? 'bg-secondary-100 shadow-md md:shadow-lg'
-//           : 'hover:border-primary-200 border border-neutral-300 bg-neutral-50 hover:shadow-sm',
-//         className
-//       )}
-//     >
-//       <div
-//         className={cn(
-//           'flex size-[60px] items-center justify-center rounded-full p-2.5',
-//           isFeatured ? 'bg-neutral-25' : 'bg-neutral-100'
-//         )}
-//       >
-//         <Image src={iconSrc} alt={`${title} icon`} width={35} height={35} />
-//       </div>
-
-//       <h3 className='text-center text-base leading-loose font-semibold text-neutral-950'>
-//         {title}
-//       </h3>
-
-//       <p className='min-h-[90px] text-center text-base leading-loose font-normal tracking-[-0.03em] text-neutral-800'>
-//         {description}
-//       </p>
-//     </div>
-//   );
-// });
-
-// TechCard.displayName = 'TechCard';
-
-// const WorkflowSection: React.FC = () => {
-//   const [currentIndex, setCurrentIndex] = useState(0);
-//   const [cardsPerPage, setCardsPerPage] = useState(2);
-//   const containerRef = useRef<HTMLDivElement>(null);
-//   const cardRef = useRef<HTMLDivElement>(null); //
-//   const updateCardsPerPage = useCallback(() => {
-//     if (window.innerWidth >= 768) {
-//       setCardsPerPage(4);
-//     } else {
-//       setCardsPerPage(2);
-//     }
-
-//     setCurrentIndex(0);
-//   }, []);
-
-//   useEffect(() => {
-//     updateCardsPerPage();
-//     window.addEventListener('resize', updateCardsPerPage);
-//     return () => window.removeEventListener('resize', updateCardsPerPage);
-//   }, [updateCardsPerPage]);
-
-//   const totalPages = Math.ceil(techStackData.length / cardsPerPage);
-
-//   const handleNext = () => {
-//     setCurrentIndex((prevIndex) => (prevIndex + 1) % totalPages);
-//   };
-
-//   const handlePrev = () => {
-//     setCurrentIndex((prevIndex) => (prevIndex - 1 + totalPages) % totalPages);
-//   };
-
-//   useEffect(() => {
-//     if (containerRef.current && cardRef.current) {
-//       const cardWidth = cardRef.current.offsetWidth;
-//       const gap = 20;
-
-//       const slideDistance = (cardWidth + gap) * cardsPerPage;
-
-//       const scrollLeft = currentIndex * slideDistance;
-
-//       containerRef.current.scrollTo({
-//         left: scrollLeft,
-//         behavior: 'smooth',
-//       });
-//     }
-//   }, [currentIndex, cardsPerPage]);
-
-//   return (
-//     <section className='relative isolate mx-auto flex w-full max-w-[1440px] flex-col items-center bg-gradient-to-b from-transparent to-[rgba(158,56,94,0.1)] py-10 text-white md:py-20'>
-//       <div className='custom-container mx-auto flex w-full flex-col items-center gap-8 px-4 md:gap-12'>
-//         {/* Header Section */}
-//         <div className='flex max-w-[847px] flex-col items-center gap-2 text-center'>
-//           <h2 className='text-2xl leading-9 font-bold text-neutral-950 md:text-4xl md:leading-[56px] md:tracking-[-0.03em]'>
-//             Code, Design, and Everything in Between
-//           </h2>
-//           <p className='text-base leading-loose font-medium text-neutral-950 md:text-base md:leading-loose md:tracking-[-0.03em]'>
-//             These are the technologies that power my workflow and bring ideas to
-//             life.
-//           </p>
-//         </div>
-
-//         {/* Tech Cards Container */}
-//         <div className='relative w-full overflow-hidden'>
-//           <div
-//             ref={containerRef}
-//             className='flex snap-x snap-mandatory flex-row gap-5 overflow-x-hidden transition-transform duration-300 ease-in-out'
-//           >
-//             {techStackData.map((tech, index) => (
-//               <TechCard
-//                 key={index}
-//                 iconSrc={tech.iconSrc}
-//                 title={tech.title}
-//                 description={tech.description}
-//                 isFeatured={tech.isFeatured}
-//                 ref={index === 0 ? cardRef : null}
-//                 className='snap-center' //
-//               />
-//             ))}
-//           </div>
-//         </div>
-
-//         {/* Navigation Buttons */}
-//         <div className='flex flex-row items-center gap-3'>
-//           <Button
-//             size='ringCircle'
-//             variant='ring'
-//             className='size-[45.33px]'
-//             onClick={handlePrev}
-//             disabled={currentIndex === 0} // Disable prev jika di halaman pertama
-//           >
-//             <Image
-//               src='/icons/left2.svg' // Ganti ke arrow.svg, lalu rotate
-//               alt='Previous'
-//               width={24}
-//               height={24}
-//             />
-//           </Button>
-
-//           <Button
-//             size='ringCircle'
-//             variant='ring'
-//             className='size-[45.33px]'
-//             onClick={handleNext}
-//             disabled={currentIndex === totalPages - 1} // Disable next jika di halaman terakhir
-//           >
-//             <Image src='/icons/right2.svg' alt='Next' width={24} height={24} />
-//           </Button>
-//         </div>
-//       </div>
-//     </section>
-//   );
-// };
-
-// export default WorkflowSection;
-
-// 90%
 'use client';
+
 import * as React from 'react';
 import Image from 'next/image';
 import { Button } from '@/components/ui/button';
+import { motion, useReducedMotion } from 'framer-motion';
+import type { Variants } from 'framer-motion';
 
 type Tech = {
   title: string;
   desc: string;
-  icon: string; // from /public/icons
+  icon: string;
   variant: 'gold' | 'light';
 };
 
@@ -270,12 +55,11 @@ const TECHS: Tech[] = [
 export default function WorkflowSection() {
   const [index, setIndex] = React.useState(0);
   const [perPage, setPerPage] = React.useState(2);
+  const reduce = useReducedMotion();
+  const easeOut = [0.16, 1, 0.3, 1] as const;
 
   React.useEffect(() => {
-    const compute = () => {
-      // mengikuti breakpoint md: desktop 4, mobile 2
-      setPerPage(window.innerWidth >= 768 ? 4 : 2);
-    };
+    const compute = () => setPerPage(window.innerWidth >= 768 ? 4 : 2);
     compute();
     window.addEventListener('resize', compute);
     return () => window.removeEventListener('resize', compute);
@@ -285,44 +69,92 @@ export default function WorkflowSection() {
   const next = () => setIndex((i) => (i + 1) % total);
   const prev = () => setIndex((i) => (i - 1 + total) % total);
 
-  // ukuran tetap agar "kolom kuat tidak terdorong"
-  const CARD_W_DESKTOP = 215; // px
-  const CARD_W_MOBILE = 165; // px
-  const GAP_DESKTOP = 20; // px
-  const GAP_MOBILE = 16; // px
+  const CARD_W_DESKTOP = 215;
+  const CARD_W_MOBILE = 165;
+  const GAP_DESKTOP = 20;
+  const GAP_MOBILE = 16;
 
   const isDesktop = perPage === 4;
   const cardW = isDesktop ? CARD_W_DESKTOP : CARD_W_MOBILE;
   const gap = isDesktop ? GAP_DESKTOP : GAP_MOBILE;
 
-  const viewportW = isDesktop ? 920 : 361; // sesuai Figma
+  const viewportW = isDesktop ? 920 : 361;
   const trackW = total * cardW + (total - 1) * gap;
   const translateX = -(index * (cardW + gap));
 
+  const sectionDrop: Variants = reduce
+    ? { hidden: { opacity: 0 }, show: { opacity: 1 } }
+    : {
+        hidden: { opacity: 0, y: -24 },
+        show: {
+          opacity: 1,
+          y: 0,
+          transition: { duration: 0.5, ease: easeOut },
+        },
+      };
+
+  const container: Variants = {
+    hidden: {},
+    show: { transition: { staggerChildren: 0.1, delayChildren: 0.05 } },
+  };
+
+  const dropItem: Variants = reduce
+    ? { hidden: { opacity: 0 }, show: { opacity: 1 } }
+    : {
+        hidden: { opacity: 0, y: -16 },
+        show: {
+          opacity: 1,
+          y: 0,
+          transition: { duration: 0.35, ease: easeOut },
+        },
+      };
+
+  const cardItem: Variants = reduce
+    ? { hidden: { opacity: 0 }, show: { opacity: 1 } }
+    : {
+        hidden: { opacity: 0, y: -12 },
+        show: {
+          opacity: 1,
+          y: 0,
+          transition: { duration: 0.3, ease: easeOut },
+        },
+      };
+
   return (
-    <section
+    <motion.section
       id='skills'
-      className='relative isolate mx-auto flex w-full max-w-[1440px] flex-col items-center bg-transparent py-10 md:py-20'
+      className='relative isolate mx-auto flex w-full max-w-360 flex-col items-center bg-transparent py-10 md:py-20'
+      variants={sectionDrop}
+      initial='hidden'
+      whileInView='show'
+      viewport={{ once: true, amount: 0.2, margin: '10% 0% -6% 0%' }}
     >
-      <div className='custom-container mx-auto flex w-full flex-col gap-6 md:gap-12'>
-        {/* BG gradient sesuai spec */}
+      <motion.div
+        className='custom-container mx-auto flex w-full flex-col gap-6 md:gap-12'
+        variants={container}
+        initial='hidden'
+        whileInView='show'
+        viewport={{ once: true, amount: 0.2 }}
+      >
         <div className='absolute inset-0 -z-10 bg-[linear-gradient(180deg,rgba(158,56,94,0)_0%,rgba(158,56,94,0.1)_99.95%)]' />
 
-        {/* Heading */}
-        <div className='mx-auto flex w-full flex-col items-center gap-2 text-center md:px-0'>
-          <h2 className='text-display-md leading-[38px] font-bold tracking-[-0.06em] text-[#0A0D12] md:text-[40px] md:leading-[56px] md:tracking-[-0.03em]'>
+        <motion.div
+          className='mx-auto flex w-full flex-col items-center gap-2 text-center md:px-0'
+          variants={dropItem}
+        >
+          <h2 className='text-display-md md:text-display-xl leading-[38px] font-bold tracking-[-0.06em] text-neutral-950 md:leading-[56px] md:tracking-[-0.03em]'>
             Code, Design, and Everything in Between
           </h2>
-          <p className='px-5 text-sm leading-[28px] font-medium tracking-[-0.03em] text-[#0A0D12] md:text-[16px] md:leading-[30px]'>
+          <p className='md:text-md px-5 text-sm leading-[28px] font-medium tracking-[-0.03em] text-neutral-950 md:leading-[30px]'>
             These are the technologies that power my workflow and bring ideas to
             life.
           </p>
-        </div>
+        </motion.div>
 
-        {/* Viewport (fixed width so columns stay strong) */}
-        {/* Viewport: never > from container */}
-        <div className='mx-auto mr-auto flex w-full max-w-[920px] flex-col gap-8 overflow-hidden'>
-          {/* Track */}
+        <motion.div
+          className='mx-auto mr-auto flex w-full max-w-230 flex-col gap-8 overflow-hidden'
+          variants={container}
+        >
           <div
             className='flex will-change-transform'
             style={{
@@ -333,17 +165,22 @@ export default function WorkflowSection() {
             }}
           >
             {TECHS.map((t, i) => (
-              <CardTech key={i} tech={t} width={cardW} />
+              <motion.div key={i} variants={cardItem}>
+                <CardTech tech={t} width={cardW} />
+              </motion.div>
             ))}
           </div>
 
           {/* Controls */}
-          <div className='mx-auto flex items-center gap-3'>
+          <motion.div
+            className='mx-auto flex items-center gap-3'
+            variants={dropItem}
+          >
             <Button
               variant='outline'
               onClick={prev}
               aria-label='Previous'
-              className='group h-[45px] w-[45px] rounded-full border-[#D5D7DA] p-0 hover:bg-transparent focus-visible:ring-2 focus-visible:ring-black/40 active:bg-black/10'
+              className='group h-[45px] w-[45px] rounded-full border-neutral-300 p-0 hover:bg-transparent focus-visible:ring-2 focus-visible:ring-black/40 active:bg-black/10'
             >
               <span className='relative inline-block h-6 w-6 transition-[filter] duration-150 group-hover:brightness-0 group-active:brightness-0'>
                 <Image src='/icons/left3.svg' alt='Prev' fill />
@@ -354,16 +191,16 @@ export default function WorkflowSection() {
               variant='outline'
               onClick={next}
               aria-label='Next'
-              className='group h-[45px] w-[45px] rounded-full border-[#D5D7DA] p-0 hover:bg-transparent focus-visible:ring-2 focus-visible:ring-black/40 active:bg-black/10'
+              className='group h-[45px] w-[45px] rounded-full border-neutral-300 p-0 hover:bg-transparent focus-visible:ring-2 focus-visible:ring-black/40 active:bg-black/10'
             >
               <span className='relative inline-block h-6 w-6 transition-[filter] duration-150 group-hover:brightness-0 group-active:brightness-0'>
                 <Image src='/icons/right3.svg' alt='Next' fill />
               </span>
             </Button>
-          </div>
-        </div>
-      </div>
-    </section>
+          </motion.div>
+        </motion.div>
+      </motion.div>
+    </motion.section>
   );
 }
 
@@ -373,26 +210,24 @@ function CardTech({ tech, width }: { tech: Tech; width: number }) {
     <div
       className={[
         'flex h-[281px] flex-col items-center gap-3 rounded-[100px] px-4 py-10',
-        isGold ? 'bg-secondary-100' : 'border border-[#D5D7DA] bg-[#FDFDFD]',
+        isGold ? 'bg-secondary-100' : 'bg-neutral-25 border border-neutral-300',
       ].join(' ')}
       style={{ width }}
     >
-      {/* Tech Icon */}
       <div
         className={[
-          'grid h-[60px] w-[60px] place-items-center rounded-full',
-          isGold ? 'bg-[#FDFDFD]' : 'bg-[#F5F5F5]',
+          'grid h-15 w-15 place-items-center rounded-full',
+          isGold ? 'bg-neutral-25' : 'bg-neutral-100',
         ].join(' ')}
       >
         <Image src={tech.icon} alt={tech.title} width={36} height={36} />
       </div>
 
-      {/* Texts */}
-      <div className='flex w-[140.5px] flex-col items-center md:w-[183px]'>
-        <div className='text-center text-[16px] leading-[30px] font-[600] text-[#0A0D12]'>
+      <div className='flex w-35 flex-col items-center md:w-[183px]'>
+        <div className='text-md text-center leading-[30px] font-semibold text-neutral-950'>
           {tech.title}
         </div>
-        <p className='mt-1 text-center text-[14px] leading-[28px] text-[#252B37] md:text-[16px] md:leading-[30px]'>
+        <p className='md:text-md font-regular mt-1 text-center text-sm leading-[28px] text-neutral-800 md:leading-[30px]'>
           {tech.desc}
         </p>
       </div>

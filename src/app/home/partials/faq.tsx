@@ -2,7 +2,6 @@
 import { useState } from 'react';
 import { Plus, Minus } from 'lucide-react';
 
-// Data FAQ
 const faqData = [
   {
     id: 1,
@@ -44,7 +43,6 @@ type FAQItemProps = {
   toggleAccordion: (id: number) => void;
 };
 
-// Item FAQ
 const FAQRow: React.FC<FAQItemProps> = ({ item, isOpen, toggleAccordion }) => {
   return (
     <div className='mx-auto flex w-full flex-col'>
@@ -64,7 +62,6 @@ const FAQRow: React.FC<FAQItemProps> = ({ item, isOpen, toggleAccordion }) => {
           </h3>
         </div>
 
-        {/* icon */}
         <div
           className={`flex h-8 w-8 items-center justify-center rounded-full transition-colors duration-300 md:h-12 md:w-12 ${
             isOpen
@@ -97,7 +94,6 @@ const FAQRow: React.FC<FAQItemProps> = ({ item, isOpen, toggleAccordion }) => {
   );
 };
 
-// Section FAQ
 export default function FAQSection() {
   const [openId, setOpenId] = useState<number | null>(faqData[0].id);
 

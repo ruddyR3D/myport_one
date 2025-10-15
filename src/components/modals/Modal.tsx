@@ -1,5 +1,3 @@
-// components/Modal.tsx
-
 import Image from 'next/image';
 import React from 'react';
 import SuccessIcon from '../../../public/images/message-success.png';
@@ -26,9 +24,8 @@ const Modal: React.FC<ModalProps> = ({ isOpen, onClose, isSuccess }) => {
         style={{ zIndex: 1001 }}
       >
         <div
-          className={`mb-4 flex justify-center ${isSuccess ? 'bg-[#F3B64C]' : 'bg-[#E9EAEB]'} h-1/2 rounded-t-xl`}
+          className={`mb-4 flex justify-center ${isSuccess ? 'bg-secondary-100' : 'bg-neutral-200'} h-1/2 rounded-t-xl`}
         >
-          {/* Ilustrasi Amplop dan Balon */}
           <div className='relative h-32 w-32'>
             {isSuccess ? (
               <Image
@@ -51,7 +48,7 @@ const Modal: React.FC<ModalProps> = ({ isOpen, onClose, isSuccess }) => {
         </div>
 
         {isSuccess ? (
-          <div className='absolute bottom-6 flex flex-col gap-4 px-4'>
+          <div className='absolute bottom-6 flex flex-col gap-4 px-6'>
             <h2 className='text-center text-xl font-bold text-black'>
               Got Your Message!
             </h2>
@@ -61,13 +58,13 @@ const Modal: React.FC<ModalProps> = ({ isOpen, onClose, isSuccess }) => {
 
             <button
               onClick={onClose}
-              className='w-full rounded-full bg-[#B76080] py-3 font-semibold text-white transition-colors hover:bg-[#974e69] focus:outline-none'
+              className='bg-primary-300 w-full rounded-full py-3 font-semibold text-white transition-colors hover:bg-[#974e69] focus:outline-none'
             >
               Back to Home
             </button>
           </div>
         ) : (
-          <div className='absolute bottom-6 flex flex-col gap-4 px-4'>
+          <div className='absolute bottom-6 flex flex-col gap-4 px-6'>
             <h2 className='text-center text-xl font-bold text-black'>
               Message Failed to Send!
             </h2>
@@ -77,7 +74,7 @@ const Modal: React.FC<ModalProps> = ({ isOpen, onClose, isSuccess }) => {
 
             <button
               onClick={onClose}
-              className='w-full rounded-full bg-[#B76080] py-3 font-semibold text-white transition-colors hover:bg-[#974e69] focus:outline-none'
+              className='bg-primary-300 w-full rounded-full py-3 font-semibold text-white transition-colors hover:bg-[#974e69] focus:outline-none'
             >
               Try Again!
             </button>

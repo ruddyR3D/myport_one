@@ -49,7 +49,7 @@ export default function ResNav() {
             href={item.href}
             className={[
               'group relative inline-flex h-11 items-center justify-center px-2',
-              'text-[16px] leading-[30px] font-[500] tracking-[-0.03em] transition-colors',
+              'text-md leading-[30px] font-medium tracking-[-0.03em] transition-colors',
               pathname === item.href
                 ? 'text-white'
                 : 'text-neutral-300 hover:text-white',
@@ -81,7 +81,7 @@ export default function ResNav() {
         ].join(' ')}
         aria-hidden={open}
       >
-        <Link href='/' className='text-[20px] leading-[34px] font-bold'>
+        <Link href='/' className='text-xl leading-[34px] font-bold'>
           R3D Creative
         </Link>
 

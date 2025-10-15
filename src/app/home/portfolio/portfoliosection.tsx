@@ -14,21 +14,21 @@ interface PortfolioItem {
 
 const allPortfolioData: PortfolioItem[] = [
   {
-    imageSrc: '/images/image1.png',
+    imageSrc: '/images/image-1.png',
     category: 'Web Development',
     title: 'Best Portfolio 1',
     description: 'A responsive web application for e-commerce.',
     link: '/portfolio/detail-1',
   },
   {
-    imageSrc: '/images/image2.png',
+    imageSrc: '/images/image-2.png',
     category: 'Web Development',
     title: 'Best Portfolio 2',
     description: 'A dynamic personal blog platform.',
     link: '/portfolio/detail-2',
   },
   {
-    imageSrc: '/images/image3.png',
+    imageSrc: '/images/image-3.png',
     category: 'Web Development',
     title: 'Best Portfolio 3',
     description: 'An interactive dashboard for data visualization.',
@@ -36,14 +36,14 @@ const allPortfolioData: PortfolioItem[] = [
   },
   // create new all item portfolio global
   {
-    imageSrc: '/images/image4.png',
+    imageSrc: '/images/image-8.png',
     category: 'Mobile App',
     title: 'Mobile App Design',
     description: 'User-friendly mobile app interface design.',
     link: '/portfolio/detail-4',
   },
   {
-    imageSrc: '/images/image5.png',
+    imageSrc: '/images/image-9.png',
     category: 'UI/UX Design',
     title: 'Website Redesign',
     description: 'Modern and intuitive website redesign project.',
@@ -53,7 +53,7 @@ const allPortfolioData: PortfolioItem[] = [
 
 const PortfolioPage: React.FC = () => {
   return (
-    <div className='relative mx-auto flex w-full max-w-[1440px] flex-col items-center bg-transparent py-10 text-neutral-950 md:py-20'>
+    <div className='relative mx-auto flex w-full max-w-360 flex-col items-center bg-transparent py-10 text-neutral-950 md:py-20'>
       <div className='custom-container mx-auto flex w-full flex-col gap-8 px-4 md:gap-16'>
         <h1 className='text-center text-3xl font-bold md:text-5xl'>
           All My Portfolio Projects
@@ -98,7 +98,7 @@ const PortfolioPage: React.FC = () => {
                   className='bg-accent-100 hover:bg-accent-200 size-9 self-end'
                 >
                   <Image
-                    src='/icons/arrow.svg'
+                    src='/icons/rightw.svg'
                     alt='View Portfolio'
                     width={20}
                     height={20}

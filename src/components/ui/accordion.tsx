@@ -44,9 +44,8 @@ function AccordionTrigger({
           aria-hidden
           className='relative inline-flex h-8 w-8 items-center justify-center rounded-full bg-[#B76080] transition-colors duration-200 group-data-[state=open]:border group-data-[state=open]:border-[#D5D7DA] group-data-[state=open]:bg-white md:h-12 md:w-12'
         >
-          {/* Vertical line (hidden when open =>minus) */}
           <i className='absolute block h-3/5 w-0.5 bg-white transition-opacity duration-150 group-data-[state=open]:opacity-0 md:w-[2px]' />
-          {/* Horizontal line */}
+
           <i className='absolute block h-0.5 w-3/5 bg-white group-data-[state=open]:bg-[#0A0D12] md:h-[2px]' />
         </span>
       </AccordionPrimitive.Trigger>
