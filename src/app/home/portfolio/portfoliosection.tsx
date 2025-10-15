@@ -1,4 +1,3 @@
-
 import React from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
@@ -94,7 +93,7 @@ const PortfolioPage: React.FC = () => {
                   {portfolio.description}
                 </p>
                 <Button
-                  variant='ring'
+                  variant='outline'
                   size='circle'
                   className='bg-accent-100 hover:bg-accent-200 size-9 self-end'
                 >
@@ -112,7 +111,7 @@ const PortfolioPage: React.FC = () => {
 
         <div className='mt-8 text-center'>
           <Link href='/' passHref>
-            <Button variant='ring'>
+            <Button variant='outline'>
               <span className='text-base leading-loose font-semibold text-neutral-950'>
                 Back to Home
               </span>
